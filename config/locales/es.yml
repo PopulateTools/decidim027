@@ -1,0 +1,28 @@
+es:
+  activemodel:
+    errors:
+      models:
+        budget:
+          attributes:
+            decidim_scope_id:
+              invalid_subscope: "Ámbito inválido: Por favor, selecciona un ámbito que descienda del que está actualmente seleccionado"
+        debate:
+          attributes:
+            scope_id:
+              invalid_subscope: "Ámbito inválido: Por favor, selecciona un ámbito que descienda del que está actualmente seleccionado"
+        project:
+          attributes:
+            decidim_scope_id:
+              invalid_subscope: "Ámbito inválido: Por favor, selecciona un ámbito que descienda del que está actualmente seleccionado"
+        meeting:
+          attributes:
+            decidim_scope_id:
+              invalid_subscope: "Ámbito inválido: Por favor, selecciona un ámbito que descienda del que está actualmente seleccionado"
+        proposal:
+          attributes:
+            scope_id:
+              invalid_subscope: "Ámbito inválido: Por favor, selecciona un ámbito que descienda del que está actualmente seleccionado"
+        result:
+          attributes:
+            decidim_scope_id:
+              invalid_subscope: "Ámbito inválido: Por favor, selecciona un ámbito que descienda del que está actualmente seleccionado"
