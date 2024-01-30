@@ -5,10 +5,13 @@ source "https://rubygems.org"
 ruby RUBY_VERSION
 
 DECIDIM_VERSION = "0.27.5"
+DECIDIM_ANONYMOUS_PROPOSALS_VERSION = { git: "git@github.com:PopulateTools/decidim-module-anonymous_proposals.git", branch: "anonymous_proposals_for_registered_users" }
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-conferences", DECIDIM_VERSION
 gem "decidim-initiatives", DECIDIM_VERSION
+
+gem "decidim-anonymous_proposals", DECIDIM_ANONYMOUS_PROPOSALS_VERSION
 
 # Performance
 gem "appsignal"
