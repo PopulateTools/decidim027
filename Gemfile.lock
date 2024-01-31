@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:PopulateTools/decidim-module-anonymous_proposals.git
-  revision: 1fdd83516bfaf9bfbb472a2ceba57db1e3a51969
+  revision: 3446db0302194500b4ad70c4328026b0eafdff23
   branch: anonymous_proposals_for_registered_users
   specs:
     decidim-anonymous_proposals (0.27.0)
