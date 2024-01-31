@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:PopulateTools/decidim-module-anonymous_proposals.git
+  remote: https://github.com/PopulateTools/decidim-module-anonymous_proposals
   revision: 3446db0302194500b4ad70c4328026b0eafdff23
   branch: anonymous_proposals_for_registered_users
   specs:
