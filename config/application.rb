@@ -29,43 +29,6 @@ module DecidimStable027
     config.i18n.default_locale = :en
     config.i18n.enforce_available_locales = false
     config.i18n.fallbacks = { es: [:en] }
-
-    config.to_prepare do
-      [
-        Decidim::ParticipatoryProcesses::Admin::ParticipatoryProcessForm,
-        Decidim::Debates::DebateForm,
-        Decidim::Debates::Admin::DebateForm,
-        Decidim::Proposals::Admin::ProposalBaseForm,
-        Decidim::Proposals::ProposalForm,
-        Decidim::Assemblies::Admin::AssemblyForm,
-        Decidim::Conferences::Admin::ConferenceForm
-      ].each do |klass|
-        klass.include Decidim::ScopeIdValidationOverride
-      end
-
-      [
-        Decidim::Meetings::Admin::MeetingForm,
-        Decidim::Accountability::Admin::ResultForm,
-        Decidim::Budgets::Admin::BudgetForm,
-        Decidim::Budgets::Admin::ProjectForm,
-        Decidim::Meetings::MeetingForm
-      ].each do |klass|
-        klass.include Decidim::DecidimScopeIdValidationOverride
-      end
-
-      [
-        Decidim::Accountability::Result,
-        Decidim::Debates::Debate,
-        Decidim::Budgets::Budget,
-        Decidim::Budgets::Project,
-        Decidim::Meetings::Meeting,
-        Decidim::Assembly,
-        Decidim::Conference,
-        Decidim::ParticipatoryProcess
-      ].each do |klass|
-        klass.include Decidim::ScopableResourceOverrides
-      end
-    end
   end
 end
 
