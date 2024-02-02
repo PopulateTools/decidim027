@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_12_124277) do
+ActiveRecord::Schema.define(version: 2024_02_02_120952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -291,36 +291,6 @@ ActiveRecord::Schema.define(version: 2023_04_12_124277) do
     t.index ["decidim_user_id", "name"], name: "index_decidim_authorizations_on_decidim_user_id_and_name", unique: true
     t.index ["decidim_user_id"], name: "index_decidim_authorizations_on_decidim_user_id"
     t.index ["unique_id"], name: "index_decidim_authorizations_on_unique_id"
-  end
-
-  create_table "decidim_awesome_config", force: :cascade do |t|
-    t.jsonb "var"
-    t.jsonb "value"
-    t.integer "decidim_organization_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["decidim_organization_id"], name: "index_decidim_awesome_on_decidim_organization_id"
-    t.index ["var", "decidim_organization_id"], name: "index_decidim_awesome_organization_var", unique: true
-  end
-
-  create_table "decidim_awesome_config_constraints", force: :cascade do |t|
-    t.jsonb "settings"
-    t.bigint "decidim_awesome_config_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["decidim_awesome_config_id"], name: "decidim_awesome_config_constraints_config"
-    t.index ["settings", "decidim_awesome_config_id"], name: "index_decidim_awesome_settings_awesome_config", unique: true
-  end
-
-  create_table "decidim_awesome_editor_images", force: :cascade do |t|
-    t.string "image"
-    t.string "path"
-    t.bigint "decidim_author_id", null: false
-    t.bigint "decidim_organization_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["decidim_author_id"], name: "decidim_awesome_editor_images_author"
-    t.index ["decidim_organization_id"], name: "decidim_awesome_editor_images_constraint_organization"
   end
 
   create_table "decidim_blogs_posts", id: :serial, force: :cascade do |t|
@@ -695,7 +665,7 @@ ActiveRecord::Schema.define(version: 2023_04_12_124277) do
     t.bigint "resource_id"
     t.string "decidim_author_type"
     t.bigint "decidim_author_id"
-    t.integer "decidim_user_group_id"
+    t.integer "decidim_user_group_id", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["decidim_author_type", "decidim_author_id"], name: "idx_endorsements_authors"
@@ -1493,11 +1463,13 @@ ActiveRecord::Schema.define(version: 2023_04_12_124277) do
     t.jsonb "body"
     t.integer "comments_count", default: 0, null: false
     t.integer "follows_count", default: 0, null: false
+    t.datetime "deleted_at"
     t.index "md5((body)::text)", name: "decidim_proposals_proposal_body_search"
     t.index "md5((title)::text)", name: "decidim_proposals_proposal_title_search"
     t.index ["created_at"], name: "index_decidim_proposals_proposals_on_created_at"
     t.index ["decidim_component_id"], name: "index_decidim_proposals_proposals_on_decidim_component_id"
     t.index ["decidim_scope_id"], name: "index_decidim_proposals_proposals_on_decidim_scope_id"
+    t.index ["deleted_at"], name: "index_decidim_proposals_proposals_on_deleted_at"
     t.index ["proposal_votes_count"], name: "index_decidim_proposals_proposals_on_proposal_votes_count"
     t.index ["state"], name: "index_decidim_proposals_proposals_on_state"
   end
@@ -1721,6 +1693,18 @@ ActiveRecord::Schema.define(version: 2023_04_12_124277) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_decidim_system_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_decidim_system_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "decidim_templates_templates", force: :cascade do |t|
+    t.integer "decidim_organization_id", null: false
+    t.string "templatable_type"
+    t.bigint "templatable_id"
+    t.jsonb "name", null: false
+    t.jsonb "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_organization_id"], name: "index_decidim_templates_organization"
+    t.index ["templatable_type", "templatable_id"], name: "index_decidim_templates_templatable"
   end
 
   create_table "decidim_term_customizer_constraints", force: :cascade do |t|
@@ -1951,9 +1935,6 @@ ActiveRecord::Schema.define(version: 2023_04_12_124277) do
   add_foreign_key "decidim_assemblies_settings", "decidim_organizations"
   add_foreign_key "decidim_attachments", "decidim_attachment_collections", column: "attachment_collection_id", name: "fk_decidim_attachments_attachment_collection_id", on_delete: :nullify
   add_foreign_key "decidim_authorizations", "decidim_users"
-  add_foreign_key "decidim_awesome_config_constraints", "decidim_awesome_config"
-  add_foreign_key "decidim_awesome_editor_images", "decidim_organizations"
-  add_foreign_key "decidim_awesome_editor_images", "decidim_users", column: "decidim_author_id"
   add_foreign_key "decidim_budgets_budgets", "decidim_scopes"
   add_foreign_key "decidim_budgets_orders", "decidim_budgets_budgets"
   add_foreign_key "decidim_budgets_projects", "decidim_budgets_budgets"

@@ -1,11 +1,19 @@
 GIT
   remote: https://github.com/PopulateTools/decidim-module-anonymous_proposals
-  revision: 943c4de648223d4a5e9d9b472c9d1f2e983717ce
-  branch: anonymous_proposals_for_registered_users
+  revision: 0e837e7e78658ad8518b3e3fe7a3c63f83724ee7
+  branch: proposals_modules_compatibility
   specs:
     decidim-anonymous_proposals (0.27.0)
       decidim-core (>= 0.27.0)
       deface (~> 1.5)
+
+GIT
+  remote: https://github.com/mainio/decidim-module-simple_proposal.git
+  revision: ef6a0ceb5b6c45d1a19bcfd05c5ee2fcf370cd88
+  specs:
+    decidim-simple_proposal (0.27.0)
+      decidim-core (~> 0.27.0)
+      decidim-proposals (~> 0.27.0)
 
 GEM
   remote: https://rubygems.org/
@@ -864,6 +872,7 @@ DEPENDENCIES
   decidim-conferences (= 0.27.5)
   decidim-dev (= 0.27.5)
   decidim-initiatives (= 0.27.5)
+  decidim-simple_proposal!
   faker (~> 2.14)
   letter_opener_web (~> 1.3)
   listen (~> 3.1)
