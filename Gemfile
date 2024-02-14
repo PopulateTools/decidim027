@@ -13,7 +13,8 @@ gem "decidim-initiatives", DECIDIM_VERSION
 
 gem "decidim-anonymous_proposals", DECIDIM_ANONYMOUS_PROPOSALS_VERSION
 
-# gem "decidim-simple_proposal", git: "https://github.com/mainio/decidim-module-simple_proposal.git"
+gem "decidim-simple_proposal", git: "https://github.com/mainio/decidim-module-simple_proposal.git"
+gem "decidim-decidim_awesome", git: "https://github.com/octree-gva/decidim-module-decidim_awesome.git"
 
 # Performance
 gem "appsignal"
